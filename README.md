@@ -1,6 +1,8 @@
 # RPi4_USBC_SERIAL
 Credit: hardill.me.uk/wordpress/2019/11/02/pi4-usb-c-gadget/
 
+'setup' executes the following instructions from the working directory
+
 - Add 'dtoverlay=dwc2' to the /boot/config.txt
 
 - Add 'modules-load=dwc2' to the end of /boot/cmdline.txt
