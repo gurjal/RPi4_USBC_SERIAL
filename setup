@@ -1,0 +1,12 @@
+#!/bin/sh
+
+apt-get install dnsmasq
+echo 'dtoverlay=dwc2' >> /boot/config.txt
+sed -i 's/$/ modules-load=dwc2/' /boot/cmdline.txt
+touch /boot/ssh
+echo 'libcomposite' >> /etc/modules
+mv usb /etc/dnsmasq.d/
+mv usb0 /etc/network/interfaces.d/
+mv usb.sh /root/
+chmod +x /root/usb.sh
+sed -i '$i/root/usb.sh' /etc/rc.local
