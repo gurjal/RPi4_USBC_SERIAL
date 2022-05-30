@@ -1,12 +1,13 @@
 #!/bin/sh
 
 apt-get install dnsmasq
-echo 'dtoverlay=dwc2' >> /boot/config.txt
-sed -i 's/$/ modules-load=dwc2/' /boot/cmdline.txt
+echo "dtoverlay=dwc2" >> /boot/config.txt
+sed -i "s/$/ modules-load=dwc2/" /boot/cmdline.txt
 touch /boot/ssh
-echo 'libcomposite' >> /etc/modules
-mv usb /etc/dnsmasq.d/
-mv usb0 /etc/network/interfaces.d/
-mv usb.sh /root/
+echo "libcomposite" >> /etc/modules
+echo -e "denyinterfaces usb0\n$(cat /etc/dhcpcd.conf)" > /etc/dhcpcd.conf
+cp usb /etc/dnsmasq.d/
+cp usb0 /etc/network/interfaces.d/
+cp usb.sh /root/
 chmod +x /root/usb.sh
-sed -i '$i/root/usb.sh' /etc/rc.local
+sed -i "$i/root/usb.sh" /etc/rc.local
